@@ -9,7 +9,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
     background: #f4f7fb;
     color: #1f2937;
     min-height: 100vh;
@@ -35,6 +35,11 @@ body {
 .logo {
     font-size: 48px;
     margin-bottom: 10px;
+}
+
+.logo,
+.card-icone {
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
 }
 
 .cabecalho h1 {
@@ -543,17 +548,11 @@ body {
         transform 0.5s ease;
 }
 
-
-/* SUCESSO */
-
 .mensagem-success {
     background: #dcfce7;
     color: #166534;
     border: 1px solid #bbf7d0;
 }
-
-
-/* ERRO */
 
 .mensagem-error {
     background: #fee2e2;
@@ -561,20 +560,13 @@ body {
     border: 1px solid #fecaca;
 }
 
-
-/* AVISO */
-
 .mensagem-warning {
     background: #fef3c7;
     color: #92400e;
     border: 1px solid #fde68a;
 }
 
-
-/* ANIMAÇÃO */
-
 @keyframes aparecerMensagem {
-
     from {
         opacity: 0;
         transform: translateY(-10px);
@@ -585,9 +577,6 @@ body {
         transform: translateY(0);
     }
 }
-
-
-/* DESAPARECER MENSAGEM */
 
 .mensagem.sumir {
     opacity: 0;
@@ -639,102 +628,56 @@ body {
 
 .barra-pesquisa {
     display: grid;
-
     grid-template-columns: repeat(6, 1fr);
-
     gap: 12px;
-
     background: white;
-
     padding: 20px;
-
     border-radius: 12px;
-
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-
     margin-bottom: 25px;
 }
 
-
-/* PESQUISA POR LOCAL */
-
 .barra-pesquisa input {
     grid-column: 1 / -1;
-
     width: 100%;
-
     padding: 12px 15px;
-
     border: 1px solid #d1d5db;
-
     border-radius: 8px;
-
     font-size: 15px;
-
     font-family: Arial, sans-serif;
-
     background: white;
 }
-
-
-/* FILTROS */
 
 .barra-pesquisa select {
     grid-column: span 2;
-
     width: 100%;
-
     padding: 12px 15px;
-
     border: 1px solid #d1d5db;
-
     border-radius: 8px;
-
     background: white;
-
     color: #374151;
-
     font-size: 15px;
-
     font-family: Arial, sans-serif;
-
     cursor: pointer;
 }
-
-
-/* FOCO */
 
 .barra-pesquisa input:focus,
 .barra-pesquisa select:focus {
     outline: none;
-
     border-color: #1d5fa7;
-
     box-shadow: 0 0 0 2px rgba(29, 95, 167, 0.08);
 }
 
-
-/* BOTÃO PESQUISAR */
-
 .barra-pesquisa button {
     grid-column: span 3;
-
     padding: 12px 18px;
-
     border: none;
-
     border-radius: 8px;
-
     background: #1d5fa7;
-
     color: white;
-
     font-size: 15px;
-
     font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.2s;
 }
 
@@ -742,30 +685,17 @@ body {
     background: #164b85;
 }
 
-
-/* BOTÃO LIMPAR */
-
 .barra-pesquisa a {
     grid-column: span 3;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     padding: 12px 18px;
-
     border-radius: 8px;
-
     background: #e5e7eb;
-
     color: #374151;
-
     text-decoration: none;
-
     font-weight: bold;
-
     transition: 0.2s;
 }
 
@@ -813,9 +743,6 @@ body {
         font-size: 29px;
     }
 
-
-    /* PÁGINA INICIAL */
-
     .opcoes {
         grid-template-columns: 1fr;
     }
@@ -824,16 +751,10 @@ body {
         padding: 28px 20px;
     }
 
-
-    /* ACESSO ADMIN */
-
     .acesso-admin {
         justify-content: center;
         margin-bottom: 30px;
     }
-
-
-    /* PAINEL */
 
     .acoes-painel {
         flex-direction: column;
@@ -844,9 +765,6 @@ body {
     .botao-voltar {
         text-align: center;
     }
-
-
-    /* AÇÕES ADMINISTRATIVAS */
 
     .acoes-admin {
         flex-direction: column;
@@ -859,9 +777,6 @@ body {
         text-align: center;
     }
 
-
-    /* FILTROS */
-
     .barra-pesquisa {
         grid-template-columns: 1fr;
     }
@@ -873,9 +788,6 @@ body {
         grid-column: 1;
         width: 100%;
     }
-
-
-    /* OCORRÊNCIAS */
 
     .ocorrencia-topo {
         flex-direction: column;
@@ -898,6 +810,7 @@ body {
         text-align: center;
     }
 }
+
 
 /* ========================================
    FOTO DA OCORRÊNCIA
@@ -924,13 +837,9 @@ body {
     transform: scale(1.02);
 }
 
-
-/* CELULAR */
-
 @media (max-width: 700px) {
 
     .ocorrencia-foto img {
         height: 220px;
     }
-
 }
