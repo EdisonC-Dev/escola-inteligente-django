@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@
     <main class="container">
 
         <header class="cabecalho">
+
             <div class="logo">📋</div>
 
             <h1>Painel de Ocorrências</h1>
@@ -24,11 +26,13 @@
             <p>
                 Gerencie os problemas registrados na infraestrutura escolar.
             </p>
+
         </header>
 
 
         <!-- MENSAGENS DO SISTEMA -->
         {% if messages %}
+
             <div class="mensagens">
 
                 {% for message in messages %}
@@ -41,6 +45,7 @@
                 {% endfor %}
 
             </div>
+
         {% endif %}
 
 
@@ -254,7 +259,7 @@
                         <div class="ocorrencia-foto">
 
                             <img
-                                src="{{ ocorrencia.foto.url }}"
+                                src="{{ ocorrencia.foto }}"
                                 alt="Foto da ocorrência {{ ocorrencia.id }}"
                             >
 
@@ -266,20 +271,24 @@
                     <div class="ocorrencia-info">
 
                         <p>
+
                             <strong>Categoria</strong>
 
                             <span>
                                 {{ ocorrencia.get_categoria_display }}
                             </span>
+
                         </p>
 
 
                         <p>
+
                             <strong>Prioridade</strong>
 
                             <span>
                                 {{ ocorrencia.get_prioridade_display }}
                             </span>
+
                         </p>
 
 
@@ -295,11 +304,13 @@
 
 
                         <p>
+
                             <strong>Registrado em</strong>
 
                             <span>
                                 {{ ocorrencia.data_criacao|date:"d/m/Y H:i" }}
                             </span>
+
                         </p>
 
                     </div>
@@ -351,18 +362,25 @@
 
 
     <script>
+
         setTimeout(function () {
+
             const mensagens = document.querySelectorAll('.mensagem');
 
             mensagens.forEach(function (mensagem) {
+
                 mensagem.classList.add('sumir');
 
                 setTimeout(function () {
                     mensagem.remove();
                 }, 500);
+
             });
+
         }, 4000);
+
     </script>
 
 </body>
+
 </html>

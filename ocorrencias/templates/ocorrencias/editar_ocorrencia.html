@@ -46,6 +46,25 @@
             </div>
 
 
+            <!-- FOTO ATUAL -->
+            {% if ocorrencia.foto %}
+
+                <div class="ocorrencia-foto">
+
+                    <p>
+                        <strong>Foto atual</strong>
+                    </p>
+
+                    <img
+                        src="{{ ocorrencia.foto }}"
+                        alt="Foto atual da ocorrência {{ ocorrencia.id }}"
+                    >
+
+                </div>
+
+            {% endif %}
+
+
             <form method="POST" enctype="multipart/form-data">
 
                 {% csrf_token %}

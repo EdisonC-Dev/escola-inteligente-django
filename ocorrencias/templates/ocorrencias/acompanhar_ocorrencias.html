@@ -77,7 +77,7 @@
                         <div class="ocorrencia-foto">
 
                             <img
-                                src="{{ ocorrencia.foto.url }}"
+                                src="{{ ocorrencia.foto }}"
                                 alt="Foto da ocorrência {{ ocorrencia.id }}"
                             >
 
@@ -89,46 +89,38 @@
                     <div class="ocorrencia-info">
 
                         <p>
-
                             <strong>Categoria</strong>
 
                             <span>
                                 {{ ocorrencia.get_categoria_display }}
                             </span>
-
                         </p>
 
 
                         <p>
-
                             <strong>Prioridade</strong>
 
                             <span>
                                 {{ ocorrencia.get_prioridade_display }}
                             </span>
-
                         </p>
 
 
                         <p class="descricao">
-
                             <strong>Descrição</strong>
 
                             <span>
                                 {{ ocorrencia.descricao }}
                             </span>
-
                         </p>
 
 
                         <p>
-
                             <strong>Registrado em</strong>
 
                             <span>
                                 {{ ocorrencia.data_criacao|date:"d/m/Y H:i" }}
                             </span>
-
                         </p>
 
                     </div>

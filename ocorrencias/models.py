@@ -43,8 +43,8 @@ class Ocorrencia(models.Model):
         default='Pendente'
     )
 
-    foto = models.ImageField(
-        upload_to='ocorrencias/',
+    foto = models.URLField(
+        max_length=1000,
         blank=True,
         null=True
     )

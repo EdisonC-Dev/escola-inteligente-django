@@ -3,6 +3,11 @@ from .models import Ocorrencia
 
 
 class OcorrenciaForm(forms.ModelForm):
+    foto_upload = forms.ImageField(
+        required=False,
+        label='Foto'
+    )
+
     class Meta:
         model = Ocorrencia
         fields = [
@@ -10,11 +15,15 @@ class OcorrenciaForm(forms.ModelForm):
             'categoria',
             'descricao',
             'prioridade',
-            'foto',
         ]
 
 
 class EditarOcorrenciaForm(forms.ModelForm):
+    foto_upload = forms.ImageField(
+        required=False,
+        label='Nova foto'
+    )
+
     class Meta:
         model = Ocorrencia
         fields = [
@@ -23,5 +32,4 @@ class EditarOcorrenciaForm(forms.ModelForm):
             'descricao',
             'prioridade',
             'status',
-            'foto',
         ]

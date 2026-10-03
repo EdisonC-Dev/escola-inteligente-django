@@ -1,9 +1,38 @@
+import os
+import uuid
+
 from django.shortcuts import render, redirect
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import messages
 
+from vercel import blob
+
 from .forms import OcorrenciaForm, EditarOcorrenciaForm
 from .models import Ocorrencia
+
+
+def enviar_foto_para_blob(foto):
+    """
+    Envia uma imagem para o Vercel Blob
+    e retorna a URL pública gerada.
+    """
+
+    if not foto:
+        return None
+
+    extensao = os.path.splitext(foto.name)[1].lower()
+
+    nome_arquivo = f"ocorrencias/{uuid.uuid4()}{extensao}"
+
+    resultado = blob.put(
+        nome_arquivo,
+        foto.read(),
+        access="public",
+        content_type=foto.content_type,
+        add_random_suffix=False,
+    )
+
+    return resultado.url
 
 
 # PÁGINA INICIAL
@@ -22,7 +51,15 @@ def criar_ocorrencia(request):
         )
 
         if form.is_valid():
-            form.save()
+
+            ocorrencia = form.save(commit=False)
+
+            foto = form.cleaned_data.get('foto_upload')
+
+            if foto:
+                ocorrencia.foto = enviar_foto_para_blob(foto)
+
+            ocorrencia.save()
 
             messages.success(
                 request,
@@ -72,40 +109,33 @@ def acompanhar_ocorrencias(request):
 @staff_member_required(login_url='login')
 def listar_ocorrencias(request):
 
-    # PEGA OS FILTROS
     pesquisa = request.GET.get('pesquisa', '')
     status = request.GET.get('status', '')
     categoria = request.GET.get('categoria', '')
     prioridade = request.GET.get('prioridade', '')
 
-    # COMEÇA COM TODAS AS OCORRÊNCIAS
     ocorrencias = Ocorrencia.objects.all()
 
-    # PESQUISA PELO LOCAL
     if pesquisa:
         ocorrencias = ocorrencias.filter(
             local__icontains=pesquisa
         )
 
-    # FILTRO PELO STATUS
     if status:
         ocorrencias = ocorrencias.filter(
             status=status
         )
 
-    # FILTRO PELA CATEGORIA
     if categoria:
         ocorrencias = ocorrencias.filter(
             categoria=categoria
         )
 
-    # FILTRO PELA PRIORIDADE
     if prioridade:
         ocorrencias = ocorrencias.filter(
             prioridade=prioridade
         )
 
-    # MAIS RECENTES PRIMEIRO
     ocorrencias = ocorrencias.order_by(
         '-data_criacao'
     )
@@ -140,7 +170,17 @@ def editar_ocorrencia(request, id):
         )
 
         if form.is_valid():
-            form.save()
+
+            ocorrencia = form.save(commit=False)
+
+            nova_foto = form.cleaned_data.get('foto_upload')
+
+            if nova_foto:
+                ocorrencia.foto = enviar_foto_para_blob(
+                    nova_foto
+                )
+
+            ocorrencia.save()
 
             messages.success(
                 request,
