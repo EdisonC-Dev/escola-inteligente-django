@@ -7,3 +7,7 @@ staticfiles/
 db.sqlite3
 .vscode/
 .idea/
+.vercel
+.env*
+.env.production.local
+.env*.local
