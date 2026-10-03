@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ocorrência Registrada | Escola Inteligente</title>
+
+    <link rel="stylesheet"
+          href="{% static 'ocorrencias/css/style.css' %}">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- MENSAGEM DO SISTEMA -->
+        {% if messages %}
+            <div class="mensagens">
+                {% for message in messages %}
+                    <div class="mensagem mensagem-{{ message.tags }}">
+                        <span>✅</span>
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+
+        <header class="cabecalho">
+
+            <div class="logo">
+                ✅
+            </div>
+
+            <h1>Ocorrência registrada!</h1>
+
+            <p>
+                O problema foi registrado com sucesso
+                e já pode ser acompanhado pelo sistema.
+            </p>
+
+        </header>
+
+
+        <div class="form-card">
+
+            <div style="text-align: center;">
+
+                <h2 style="color: #123a63; margin-bottom: 15px;">
+                    Obrigado pela colaboração!
+                </h2>
+
+                <p style="color: #6b7280; margin-bottom: 30px;">
+                    A ocorrência foi enviada e ficará disponível
+                    para acompanhamento.
+                </p>
+
+
+                <!-- REGISTRAR OUTRA OCORRÊNCIA -->
+                <a
+                    href="{% url 'criar_ocorrencia' %}"
+                    class="botao"
+                    style="margin: 5px;"
+                >
+                    ➕ Registrar outra ocorrência
+                </a>
+
+
+                <!-- VER OCORRÊNCIAS PÚBLICAS -->
+                <a
+                    href="{% url 'acompanhar_ocorrencias' %}"
+                    class="botao botao-secundario"
+                    style="margin: 5px;"
+                >
+                    📋 Ver ocorrências
+                </a>
+
+
+                <!-- VOLTAR AO INÍCIO -->
+                <div style="margin-top: 25px;">
+
+                    <a
+                        href="{% url 'inicio' %}"
+                        class="botao-voltar"
+                    >
+                        🏠 Voltar ao início
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+    setTimeout(function () {
+        const mensagens = document.querySelectorAll('.mensagem');
+
+        mensagens.forEach(function (mensagem) {
+            mensagem.classList.add('sumir');
+
+            setTimeout(function () {
+                mensagem.remove();
+            }, 500);
+        });
+    }, 4000);
+</script>
+</body>
+</html>

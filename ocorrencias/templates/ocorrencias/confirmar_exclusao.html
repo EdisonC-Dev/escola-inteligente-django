@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Excluir Ocorrência | Escola Inteligente</title>
+
+    <link rel="stylesheet"
+          href="{% static 'ocorrencias/css/style.css' %}">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="cabecalho">
+
+            <div class="logo">
+                ⚠️
+            </div>
+
+            <h1>Excluir ocorrência</h1>
+
+            <p>
+                Confirme a exclusão da ocorrência selecionada.
+            </p>
+
+        </header>
+
+        <div class="excluir-card">
+
+            <div class="alerta-exclusao">
+
+                <div class="alerta-icone">
+                    🗑️
+                </div>
+
+                <h2>Tem certeza?</h2>
+
+                <p>
+                    Esta ação é permanente e não poderá ser desfeita.
+                </p>
+
+            </div>
+
+            <div class="detalhes-exclusao">
+
+                <span class="ocorrencia-id">
+                    Ocorrência #{{ ocorrencia.id }}
+                </span>
+
+                <h2>{{ ocorrencia.local }}</h2>
+
+                <p>
+                    <strong>Categoria:</strong>
+                    {{ ocorrencia.get_categoria_display }}
+                </p>
+
+                <p>
+                    <strong>Prioridade:</strong>
+                    {{ ocorrencia.get_prioridade_display }}
+                </p>
+
+                <p>
+                    <strong>Problema:</strong>
+                    {{ ocorrencia.descricao }}
+                </p>
+
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="botao-excluir-confirmar"
+                >
+                    🗑️ Excluir definitivamente
+                </button>
+
+            </form>
+
+            <a
+                href="{% url 'listar_ocorrencias' %}"
+                class="botao-cancelar"
+            >
+                ← Cancelar e voltar ao painel
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

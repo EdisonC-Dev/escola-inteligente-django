@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Editar Ocorrência | Escola Inteligente</title>
+
+    <link rel="stylesheet"
+          href="{% static 'ocorrencias/css/style.css' %}">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="cabecalho">
+
+            <div class="logo">
+                ✏️
+            </div>
+
+            <h1>Editar ocorrência</h1>
+
+            <p>
+                Atualize as informações e o status da ocorrência.
+            </p>
+
+        </header>
+
+
+        <div class="form-card">
+
+            <div class="editar-info">
+
+                <span>
+                    Ocorrência #{{ ocorrencia.id }}
+                </span>
+
+                <h2>
+                    {{ ocorrencia.local }}
+                </h2>
+
+            </div>
+
+
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button
+                    type="submit"
+                    class="botao botao-form"
+                >
+                    💾 Salvar alterações
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div class="voltar">
+
+            <a href="{% url 'listar_ocorrencias' %}">
+                ← Voltar para o painel
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

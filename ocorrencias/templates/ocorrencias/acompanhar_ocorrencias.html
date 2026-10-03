@@ -1,0 +1,163 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acompanhar Ocorrências | Escola Inteligente</title>
+
+    <link rel="stylesheet"
+          href="{% static 'ocorrencias/css/style.css' %}">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="cabecalho">
+
+            <div class="logo">🔎</div>
+
+            <h1>Acompanhar Ocorrências</h1>
+
+            <p>
+                Consulte os problemas registrados e acompanhe
+                a situação de cada ocorrência.
+            </p>
+
+        </header>
+
+
+        <div class="acoes-painel">
+
+            <a href="{% url 'inicio' %}" class="botao-voltar">
+                ← Voltar ao início
+            </a>
+
+            <a href="{% url 'criar_ocorrencia' %}" class="botao">
+                + Registrar problema
+            </a>
+
+        </div>
+
+
+        <section class="lista-ocorrencias">
+
+            {% for ocorrencia in ocorrencias %}
+
+                <article class="ocorrencia-card">
+
+                    <div class="ocorrencia-topo">
+
+                        <div>
+
+                            <span class="ocorrencia-id">
+                                Ocorrência #{{ ocorrencia.id }}
+                            </span>
+
+                            <h2>
+                                {{ ocorrencia.local }}
+                            </h2>
+
+                        </div>
+
+
+                        <span class="status status-{{ ocorrencia.status|slugify }}">
+                            {{ ocorrencia.get_status_display }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- FOTO DA OCORRÊNCIA -->
+                    {% if ocorrencia.foto %}
+
+                        <div class="ocorrencia-foto">
+
+                            <img
+                                src="{{ ocorrencia.foto.url }}"
+                                alt="Foto da ocorrência {{ ocorrencia.id }}"
+                            >
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <div class="ocorrencia-info">
+
+                        <p>
+
+                            <strong>Categoria</strong>
+
+                            <span>
+                                {{ ocorrencia.get_categoria_display }}
+                            </span>
+
+                        </p>
+
+
+                        <p>
+
+                            <strong>Prioridade</strong>
+
+                            <span>
+                                {{ ocorrencia.get_prioridade_display }}
+                            </span>
+
+                        </p>
+
+
+                        <p class="descricao">
+
+                            <strong>Descrição</strong>
+
+                            <span>
+                                {{ ocorrencia.descricao }}
+                            </span>
+
+                        </p>
+
+
+                        <p>
+
+                            <strong>Registrado em</strong>
+
+                            <span>
+                                {{ ocorrencia.data_criacao|date:"d/m/Y H:i" }}
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+            {% empty %}
+
+                <div class="sem-ocorrencias">
+
+                    <div>📭</div>
+
+                    <h2>
+                        Nenhuma ocorrência registrada
+                    </h2>
+
+                    <p>
+                        Quando um problema for registrado,
+                        ele aparecerá aqui.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </section>
+
+    </main>
+
+</body>
+</html>

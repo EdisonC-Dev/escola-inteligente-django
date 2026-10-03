@@ -1,0 +1,102 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Escola Inteligente</title>
+
+    <link rel="stylesheet"
+          href="{% static 'ocorrencias/css/style.css' %}">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- ACESSO ADMINISTRATIVO -->
+        <div class="acesso-admin">
+            <a href="{% url 'login' %}" class="botao-admin">
+                🔐 Área Administrativa
+            </a>
+        </div>
+
+
+        <header class="cabecalho">
+
+            <div class="logo">
+                🏫
+            </div>
+
+            <h1>Escola Inteligente</h1>
+
+            <p>
+                Sistema digital para registro e acompanhamento
+                de problemas da infraestrutura escolar.
+            </p>
+
+        </header>
+
+
+        <h2 class="titulo-opcoes">
+            O que você deseja fazer?
+        </h2>
+
+
+        <section class="opcoes">
+
+            <!-- REGISTRAR PROBLEMA -->
+            <div class="card">
+
+                <div class="card-icone">
+                    📝
+                </div>
+
+                <h2>Registrar problema</h2>
+
+                <p>
+                    Encontrou algum problema na escola?
+                    Registre uma nova ocorrência de forma rápida.
+                </p>
+
+                <a
+                    href="{% url 'criar_ocorrencia' %}"
+                    class="botao"
+                >
+                    Registrar ocorrência
+                </a>
+
+            </div>
+
+
+            <!-- ACOMPANHAR OCORRÊNCIAS -->
+            <div class="card">
+
+                <div class="card-icone">
+                    📋
+                </div>
+
+                <h2>Acompanhar ocorrências</h2>
+
+                <p>
+                    Consulte os problemas registrados
+                    e acompanhe a situação de cada ocorrência.
+                </p>
+
+                <a
+                    href="{% url 'acompanhar_ocorrencias' %}"
+                    class="botao botao-secundario"
+                >
+                    Ver ocorrências
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

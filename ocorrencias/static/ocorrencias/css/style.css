@@ -1,0 +1,936 @@
+/* ========================================
+   CONFIGURAÇÕES GERAIS
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 0;
+}
+
+
+/* ========================================
+   CABEÇALHO
+======================================== */
+
+.cabecalho {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.logo {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.cabecalho h1 {
+    font-size: 36px;
+    color: #123a63;
+    margin-bottom: 10px;
+}
+
+.cabecalho p {
+    color: #6b7280;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.titulo-opcoes {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 22px;
+}
+
+
+/* ========================================
+   PÁGINA INICIAL
+======================================== */
+
+.opcoes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-icone {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    color: #123a63;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #6b7280;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+
+/* ========================================
+   BOTÕES GERAIS
+======================================== */
+
+.botao {
+    display: inline-block;
+    text-decoration: none;
+    background: #1d5fa7;
+    color: white;
+    padding: 13px 22px;
+    border-radius: 9px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.botao:hover {
+    background: #164b85;
+}
+
+.botao-secundario {
+    background: #e5a50a;
+}
+
+.botao-secundario:hover {
+    background: #c98e00;
+}
+
+
+/* ========================================
+   FORMULÁRIOS
+======================================== */
+
+.form-card {
+    max-width: 650px;
+    margin: 0 auto;
+    background: white;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-card form p {
+    margin-bottom: 20px;
+}
+
+.form-card label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+    color: #123a63;
+}
+
+.form-card input,
+.form-card select,
+.form-card textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+}
+
+.form-card textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-card input:focus,
+.form-card select:focus,
+.form-card textarea:focus {
+    outline: none;
+    border-color: #1d5fa7;
+}
+
+.botao-form {
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.voltar {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.voltar a {
+    text-decoration: none;
+    color: #1d5fa7;
+    font-weight: bold;
+}
+
+.voltar a:hover {
+    text-decoration: underline;
+}
+
+
+/* ========================================
+   PAINEL DE OCORRÊNCIAS
+======================================== */
+
+.acoes-painel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.botao-voltar {
+    text-decoration: none;
+    color: #1d5fa7;
+    font-weight: bold;
+}
+
+.lista-ocorrencias {
+    display: grid;
+    gap: 20px;
+}
+
+.ocorrencia-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.ocorrencia-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.ocorrencia-id {
+    display: block;
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.ocorrencia-topo h2 {
+    color: #123a63;
+}
+
+
+/* ========================================
+   STATUS
+======================================== */
+
+.status {
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.status-pendente {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-em-analise {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status-resolvido {
+    background: #dcfce7;
+    color: #166534;
+}
+
+
+/* ========================================
+   INFORMAÇÕES DA OCORRÊNCIA
+======================================== */
+
+.ocorrencia-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.ocorrencia-info p {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ocorrencia-info strong {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.ocorrencia-info span {
+    font-size: 16px;
+}
+
+.descricao {
+    grid-column: 1 / -1;
+}
+
+
+/* ========================================
+   AÇÕES DA OCORRÊNCIA
+======================================== */
+
+.acoes-ocorrencia {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.botao-editar,
+.botao-excluir {
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.botao-editar {
+    background: #e8f1fb;
+    color: #1d5fa7;
+}
+
+.botao-excluir {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+
+/* ========================================
+   NENHUMA OCORRÊNCIA
+======================================== */
+
+.sem-ocorrencias {
+    background: white;
+    padding: 50px 20px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sem-ocorrencias div {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.sem-ocorrencias h2 {
+    color: #123a63;
+    margin-bottom: 10px;
+}
+
+.sem-ocorrencias p {
+    color: #6b7280;
+}
+
+
+/* ========================================
+   LOGIN
+======================================== */
+
+.mensagem-erro {
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* ========================================
+   ÁREA ADMINISTRATIVA
+======================================== */
+
+.acoes-admin {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-logout {
+    display: inline;
+    margin: 0;
+}
+
+.botao-sair {
+    background: #dc2626;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.botao-sair:hover {
+    background: #b91c1c;
+}
+
+
+/* ========================================
+   EDITAR OCORRÊNCIA
+======================================== */
+
+.editar-info {
+    background: #f4f7fb;
+    border-left: 4px solid #1d5fa7;
+    padding: 15px 18px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.editar-info span {
+    display: block;
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.editar-info h2 {
+    color: #123a63;
+    font-size: 20px;
+    margin: 0;
+}
+
+
+/* ========================================
+   EXCLUIR OCORRÊNCIA
+======================================== */
+
+.excluir-card {
+    max-width: 650px;
+    margin: 0 auto;
+    background: white;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.alerta-exclusao {
+    text-align: center;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.alerta-icone {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.alerta-exclusao h2 {
+    color: #b91c1c;
+    margin-bottom: 10px;
+}
+
+.alerta-exclusao p {
+    color: #7f1d1d;
+    line-height: 1.5;
+}
+
+.detalhes-exclusao {
+    background: #f4f7fb;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.detalhes-exclusao h2 {
+    color: #123a63;
+    margin: 5px 0 20px;
+}
+
+.detalhes-exclusao p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.botao-excluir-confirmar {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 9px;
+    background: #dc2626;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botao-excluir-confirmar:hover {
+    background: #b91c1c;
+}
+
+.botao-cancelar {
+    display: block;
+    margin-top: 15px;
+    padding: 13px;
+    border-radius: 9px;
+    text-align: center;
+    text-decoration: none;
+    background: #e5e7eb;
+    color: #374151;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.botao-cancelar:hover {
+    background: #d1d5db;
+}
+
+
+/* ========================================
+   MENSAGENS DO SISTEMA
+======================================== */
+
+.mensagens {
+    margin-bottom: 25px;
+}
+
+.mensagem {
+    padding: 15px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    animation: aparecerMensagem 0.3s ease;
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+
+
+/* SUCESSO */
+
+.mensagem-success {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+
+/* ERRO */
+
+.mensagem-error {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+
+/* AVISO */
+
+.mensagem-warning {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+}
+
+
+/* ANIMAÇÃO */
+
+@keyframes aparecerMensagem {
+
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* DESAPARECER MENSAGEM */
+
+.mensagem.sumir {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+
+/* ========================================
+   ACESSO ADMINISTRATIVO NA PÁGINA INICIAL
+======================================== */
+
+.acesso-admin {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.botao-admin {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 10px 16px;
+
+    background: white;
+    color: #123a63;
+
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.botao-admin:hover {
+    background: #123a63;
+    color: white;
+    border-color: #123a63;
+    transform: translateY(-2px);
+}
+
+
+/* ========================================
+   BARRA DE PESQUISA E FILTROS
+======================================== */
+
+.barra-pesquisa {
+    display: grid;
+
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 12px;
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+
+    margin-bottom: 25px;
+}
+
+
+/* PESQUISA POR LOCAL */
+
+.barra-pesquisa input {
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    padding: 12px 15px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    font-family: Arial, sans-serif;
+
+    background: white;
+}
+
+
+/* FILTROS */
+
+.barra-pesquisa select {
+    grid-column: span 2;
+
+    width: 100%;
+
+    padding: 12px 15px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #374151;
+
+    font-size: 15px;
+
+    font-family: Arial, sans-serif;
+
+    cursor: pointer;
+}
+
+
+/* FOCO */
+
+.barra-pesquisa input:focus,
+.barra-pesquisa select:focus {
+    outline: none;
+
+    border-color: #1d5fa7;
+
+    box-shadow: 0 0 0 2px rgba(29, 95, 167, 0.08);
+}
+
+
+/* BOTÃO PESQUISAR */
+
+.barra-pesquisa button {
+    grid-column: span 3;
+
+    padding: 12px 18px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #1d5fa7;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.barra-pesquisa button:hover {
+    background: #164b85;
+}
+
+
+/* BOTÃO LIMPAR */
+
+.barra-pesquisa a {
+    grid-column: span 3;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 12px 18px;
+
+    border-radius: 8px;
+
+    background: #e5e7eb;
+
+    color: #374151;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.barra-pesquisa a:hover {
+    background: #d1d5db;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE - TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+    .barra-pesquisa {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .barra-pesquisa input {
+        grid-column: 1 / -1;
+    }
+
+    .barra-pesquisa select {
+        grid-column: span 1;
+    }
+
+    .barra-pesquisa button,
+    .barra-pesquisa a {
+        grid-column: span 1;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVIDADE - CELULAR
+======================================== */
+
+@media (max-width: 700px) {
+
+    .container {
+        padding: 35px 0;
+    }
+
+    .cabecalho h1 {
+        font-size: 29px;
+    }
+
+
+    /* PÁGINA INICIAL */
+
+    .opcoes {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 28px 20px;
+    }
+
+
+    /* ACESSO ADMIN */
+
+    .acesso-admin {
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+
+    /* PAINEL */
+
+    .acoes-painel {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .botao-voltar {
+        text-align: center;
+    }
+
+
+    /* AÇÕES ADMINISTRATIVAS */
+
+    .acoes-admin {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .acoes-admin .botao,
+    .botao-sair {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    /* FILTROS */
+
+    .barra-pesquisa {
+        grid-template-columns: 1fr;
+    }
+
+    .barra-pesquisa input,
+    .barra-pesquisa select,
+    .barra-pesquisa button,
+    .barra-pesquisa a {
+        grid-column: 1;
+        width: 100%;
+    }
+
+
+    /* OCORRÊNCIAS */
+
+    .ocorrencia-topo {
+        flex-direction: column;
+    }
+
+    .ocorrencia-info {
+        grid-template-columns: 1fr;
+    }
+
+    .descricao {
+        grid-column: auto;
+    }
+
+    .acoes-ocorrencia {
+        flex-direction: column;
+    }
+
+    .botao-editar,
+    .botao-excluir {
+        text-align: center;
+    }
+}
+
+/* ========================================
+   FOTO DA OCORRÊNCIA
+======================================== */
+
+.ocorrencia-foto {
+    width: 100%;
+    margin-bottom: 25px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f4f7fb;
+    border: 1px solid #e5e7eb;
+}
+
+.ocorrencia-foto img {
+    display: block;
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.ocorrencia-foto img:hover {
+    transform: scale(1.02);
+}
+
+
+/* CELULAR */
+
+@media (max-width: 700px) {
+
+    .ocorrencia-foto img {
+        height: 220px;
+    }
+
+}

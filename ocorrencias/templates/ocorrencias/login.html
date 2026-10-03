@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acesso Administrativo | Escola Inteligente</title>
+
+    <link rel="stylesheet"
+          href="{% static 'ocorrencias/css/style.css' %}">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="cabecalho">
+            <div class="logo">🔐</div>
+
+            <h1>Acesso Administrativo</h1>
+
+            <p>
+                Entre com suas credenciais para acessar
+                o gerenciamento das ocorrências.
+            </p>
+        </header>
+
+        <div class="form-card">
+
+            {% if form.errors %}
+                <div class="mensagem-erro">
+                    Usuário ou senha incorretos.
+                </div>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <p>
+                    <label for="id_username">Usuário</label>
+                    {{ form.username }}
+                </p>
+
+                <p>
+                    <label for="id_password">Senha</label>
+                    {{ form.password }}
+                </p>
+
+                <button type="submit" class="botao botao-form">
+                    🔐 Entrar
+                </button>
+            </form>
+
+        </div>
+
+        <div class="voltar">
+            <a href="{% url 'inicio' %}">
+                ← Voltar ao início
+            </a>
+        </div>
+
+    </main>
+
+</body>
+</html>

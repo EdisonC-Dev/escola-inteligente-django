@@ -1,0 +1,368 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Painel de Ocorrências | Escola Inteligente</title>
+
+    <link rel="stylesheet"
+          href="{% static 'ocorrencias/css/style.css' %}">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="cabecalho">
+            <div class="logo">📋</div>
+
+            <h1>Painel de Ocorrências</h1>
+
+            <p>
+                Gerencie os problemas registrados na infraestrutura escolar.
+            </p>
+        </header>
+
+
+        <!-- MENSAGENS DO SISTEMA -->
+        {% if messages %}
+            <div class="mensagens">
+
+                {% for message in messages %}
+
+                    <div class="mensagem mensagem-{{ message.tags }}">
+                        <span>✅</span>
+                        <span>{{ message }}</span>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        {% endif %}
+
+
+        <!-- AÇÕES DO PAINEL -->
+        <div class="acoes-painel">
+
+            <a href="{% url 'inicio' %}" class="botao-voltar">
+                ← Início
+            </a>
+
+            <div class="acoes-admin">
+
+                <a href="{% url 'criar_ocorrencia' %}" class="botao">
+                    + Nova ocorrência
+                </a>
+
+                <form
+                    method="POST"
+                    action="{% url 'logout' %}"
+                    class="form-logout"
+                >
+                    {% csrf_token %}
+
+                    <button
+                        type="submit"
+                        class="botao botao-sair"
+                    >
+                        🚪 Sair
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- PESQUISA E FILTROS -->
+        <form method="GET" class="barra-pesquisa">
+
+            <!-- LOCAL -->
+            <input
+                type="text"
+                name="pesquisa"
+                placeholder="Pesquisar por local..."
+                value="{{ pesquisa }}"
+            >
+
+
+            <!-- STATUS -->
+            <select name="status">
+
+                <option value="">
+                    Todos os status
+                </option>
+
+                <option
+                    value="Pendente"
+                    {% if status_selecionado == 'Pendente' %}selected{% endif %}
+                >
+                    Pendente
+                </option>
+
+                <option
+                    value="Em analise"
+                    {% if status_selecionado == 'Em analise' %}selected{% endif %}
+                >
+                    Em análise
+                </option>
+
+                <option
+                    value="Resolvido"
+                    {% if status_selecionado == 'Resolvido' %}selected{% endif %}
+                >
+                    Resolvido
+                </option>
+
+            </select>
+
+
+            <!-- CATEGORIA -->
+            <select name="categoria">
+
+                <option value="">
+                    Todas as categorias
+                </option>
+
+                <option
+                    value="Eletrica"
+                    {% if categoria_selecionada == 'Eletrica' %}selected{% endif %}
+                >
+                    Elétrica
+                </option>
+
+                <option
+                    value="Hidraulica"
+                    {% if categoria_selecionada == 'Hidraulica' %}selected{% endif %}
+                >
+                    Hidráulica
+                </option>
+
+                <option
+                    value="Mobiliario"
+                    {% if categoria_selecionada == 'Mobiliario' %}selected{% endif %}
+                >
+                    Mobiliário
+                </option>
+
+                <option
+                    value="Limpeza"
+                    {% if categoria_selecionada == 'Limpeza' %}selected{% endif %}
+                >
+                    Limpeza
+                </option>
+
+                <option
+                    value="Equipamento"
+                    {% if categoria_selecionada == 'Equipamento' %}selected{% endif %}
+                >
+                    Equipamento
+                </option>
+
+                <option
+                    value="Outro"
+                    {% if categoria_selecionada == 'Outro' %}selected{% endif %}
+                >
+                    Outro
+                </option>
+
+            </select>
+
+
+            <!-- PRIORIDADE -->
+            <select name="prioridade">
+
+                <option value="">
+                    Todas as prioridades
+                </option>
+
+                <option
+                    value="Baixa"
+                    {% if prioridade_selecionada == 'Baixa' %}selected{% endif %}
+                >
+                    Baixa
+                </option>
+
+                <option
+                    value="Media"
+                    {% if prioridade_selecionada == 'Media' %}selected{% endif %}
+                >
+                    Média
+                </option>
+
+                <option
+                    value="Alta"
+                    {% if prioridade_selecionada == 'Alta' %}selected{% endif %}
+                >
+                    Alta
+                </option>
+
+            </select>
+
+
+            <button type="submit">
+                🔎 Pesquisar
+            </button>
+
+
+            {% if pesquisa or status_selecionado or categoria_selecionada or prioridade_selecionada %}
+
+                <a href="{% url 'listar_ocorrencias' %}">
+                    ✕ Limpar
+                </a>
+
+            {% endif %}
+
+        </form>
+
+
+        <!-- LISTA DE OCORRÊNCIAS -->
+        <section class="lista-ocorrencias">
+
+            {% for ocorrencia in ocorrencias %}
+
+                <article class="ocorrencia-card">
+
+                    <div class="ocorrencia-topo">
+
+                        <div>
+
+                            <span class="ocorrencia-id">
+                                Ocorrência #{{ ocorrencia.id }}
+                            </span>
+
+                            <h2>
+                                {{ ocorrencia.local }}
+                            </h2>
+
+                        </div>
+
+                        <span class="status status-{{ ocorrencia.status|slugify }}">
+                            {{ ocorrencia.get_status_display }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- FOTO DA OCORRÊNCIA -->
+                    {% if ocorrencia.foto %}
+
+                        <div class="ocorrencia-foto">
+
+                            <img
+                                src="{{ ocorrencia.foto.url }}"
+                                alt="Foto da ocorrência {{ ocorrencia.id }}"
+                            >
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <div class="ocorrencia-info">
+
+                        <p>
+                            <strong>Categoria</strong>
+
+                            <span>
+                                {{ ocorrencia.get_categoria_display }}
+                            </span>
+                        </p>
+
+
+                        <p>
+                            <strong>Prioridade</strong>
+
+                            <span>
+                                {{ ocorrencia.get_prioridade_display }}
+                            </span>
+                        </p>
+
+
+                        <p class="descricao">
+
+                            <strong>Descrição</strong>
+
+                            <span>
+                                {{ ocorrencia.descricao }}
+                            </span>
+
+                        </p>
+
+
+                        <p>
+                            <strong>Registrado em</strong>
+
+                            <span>
+                                {{ ocorrencia.data_criacao|date:"d/m/Y H:i" }}
+                            </span>
+                        </p>
+
+                    </div>
+
+
+                    <!-- AÇÕES ADMINISTRATIVAS -->
+                    <div class="acoes-ocorrencia">
+
+                        <a
+                            href="{% url 'editar_ocorrencia' ocorrencia.id %}"
+                            class="botao-editar"
+                        >
+                            ✏️ Editar
+                        </a>
+
+                        <a
+                            href="{% url 'excluir_ocorrencia' ocorrencia.id %}"
+                            class="botao-excluir"
+                        >
+                            🗑️ Excluir
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+            {% empty %}
+
+                <div class="sem-ocorrencias">
+
+                    <div>🔎</div>
+
+                    <h2>
+                        Nenhuma ocorrência encontrada
+                    </h2>
+
+                    <p>
+                        Tente alterar a pesquisa ou os filtros selecionados.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </section>
+
+    </main>
+
+
+    <script>
+        setTimeout(function () {
+            const mensagens = document.querySelectorAll('.mensagem');
+
+            mensagens.forEach(function (mensagem) {
+                mensagem.classList.add('sumir');
+
+                setTimeout(function () {
+                    mensagem.remove();
+                }, 500);
+            });
+        }, 4000);
+    </script>
+
+</body>
+</html>
